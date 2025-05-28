@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  airline-loyalty-browser:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: airline-loyalty-browser
+    ports:
+      - "6080:6080"   # noVNC Web UI port
+      - "5900:5900"   # VNC server port (optional use)
+      - "8000:8000"   # FastAPI API server
+    environment:
+      - DISPLAY=:0
+    volumes:
+      - ./app:/app
+      - ./scripts:/app/scripts
+      - ./configs:/app/configs
+    restart: unless-stopped

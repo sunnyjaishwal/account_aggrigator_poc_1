@@ -1,0 +1,10 @@
+{
+    "policies": {
+      "Certificates": {
+        "Install": [
+          "/usr/local/share/ca-certificates/mitmproxy-ca-cert.crt"
+        ]
+      }
+    }
+  }
+  
