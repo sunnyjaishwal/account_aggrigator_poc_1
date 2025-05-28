@@ -4,20 +4,23 @@
 pkill Xvfb
 pkill firefox
 pkill x11vnc
+pkill fluxbox
 
 # Start virtual display
 Xvfb :1 -screen 0 1280x720x24 &
+export DISPLAY=:1
 sleep 2
+
+# Start a lightweight window manager
+fluxbox &
+sleep 1
 
 # Start x11vnc server on display :1
 x11vnc -display :1 -nopw -forever -bg
 
 # Start noVNC server on port 6080 via websockify
 echo "Starting noVNC server..."
-# /usr/share/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 6080 &
-# /opt/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 6080 &
 /opt/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 6080 --web /opt/novnc &
-
 
 # Setup mitmproxy CA certificate
 echo "Generating mitmproxy CA certificate..."

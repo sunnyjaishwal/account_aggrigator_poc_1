@@ -32,6 +32,9 @@ COPY scripts/policies.json /usr/lib/firefox/distribution/policies.json
 # Install FastAPI, Uvicorn, and mitmproxy Python bindings
 RUN pip3 install fastapi uvicorn mitmproxy
 
+RUN apt update && apt install -y fluxbox
+
+
 # Install project-specific Python dependencies
 COPY requirements.txt /app/
 RUN pip3 install --no-cache-dir -r /app/requirements.txt
